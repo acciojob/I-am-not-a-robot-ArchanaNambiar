@@ -1,7 +1,7 @@
 //your code here
 
 // List of image class names
-const imageClassNames = ['img1', 'img2', 'img3', 'img4', 'img5'];
+const imageClassNames = ['img1', 'img2', 'img3', 'img4', 'img4'];
 
 // State variables
 let selectedImages = [];
@@ -36,6 +36,15 @@ function renderImages() {
 
 // Function to reset state
 function resetState() {
+	const resetButton = document.getElementById('reset');
+  resetButton.remove();
+	 para = document.getElementById('para');
+	if (para){
+		 para.remove();
+	}
+ //  para.remove();
+
+	
   selectedImages = [];
   state = 1;
   renderImages();
@@ -56,7 +65,7 @@ function handleImageClick(event) {
     }
   }
 
-  if (selectedImages.length === 2) {
+  if ((selectedImages.length >=1)&&(selectedImages.length === 2) ) {
     const verifyButton = document.createElement('button');
     verifyButton.id = 'verify';
     verifyButton.innerHTML = 'Verify';
@@ -65,6 +74,15 @@ function handleImageClick(event) {
 
     state = 3;
   }
+	else if (selectedImages.length >=1) {
+    const resetButton = document.createElement('button');
+    resetButton.id = 'reset';
+    resetButton.innerHTML = 'RESET';
+	resetButton.addEventListener('click', resetState);
+    document.body.appendChild(resetButton);
+
+    state = 2;
+	}
 }
 
 // Function to handle verify button click event
@@ -73,14 +91,16 @@ function handleVerifyClick() {
   verifyButton.remove();
 
   if (selectedImages.length === 2) {
-    if (selectedImages[0].classList[0] === selectedImages[1].classList[0]) {
-      const para = document.createElement('p');
+	   const para = document.createElement('p');
       para.id = 'para';
+    if (selectedImages[0].classList[0] === selectedImages[1].classList[0]) {
+      // const para = document.createElement('p');
+      // para.id = 'para';
       para.textContent = 'You are a human. Congratulations!';
       document.body.appendChild(para);
     } else {
-      const para = document.createElement('p');
-      para.id = 'para';
+      // const para = document.createElement('p');
+      // para.id = 'para';
       para.textContent = "We can't verify you as a human. You selected the non-identical tiles.";
       document.body.appendChild(para);
     }
