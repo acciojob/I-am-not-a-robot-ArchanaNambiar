@@ -1,7 +1,7 @@
 //your code here
 
 // List of image class names
-const imageClassNames = ['img1', 'img2', 'img3', 'img4', 'img4'];
+const imageClassNames = ['img1', 'img2', 'img3', 'img4','img4', 'img5'];
 
 // State variables
 let selectedImages = [];
